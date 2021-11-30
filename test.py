@@ -10,7 +10,7 @@ user_datas = [
     {'Szamla':43670, 'Ruha':12490, 'Etel': 41850},
     {'Szamla':55470, 'Ruha':8380, 'Etel': 38910},
     {'Szamla':47290, 'Ruha':7060, 'Etel': 55050}
-    ]
+]
 
 
 e_szamla = ttk.Entry(window)
