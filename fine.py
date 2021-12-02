@@ -82,15 +82,7 @@ goal_progressbar = ttk.Progressbar(saving_frame, value = 40, length = 200)
 
 # Adds options
 
-sp_options = [
-    'Kategória',
-    'Számlák, rezsi',
-    'Bevásárlás',
-    'Ruházat',
-    'Közlekedés',
-    'Egészség',
-    'Szórakozás'
-]
+sp_options = ['Kategória','Számlák, rezsi','Bevásárlás','Ruházat','Közlekedés','Egészség','Szórakozás']
 sp_option = StringVar()
 sp_option.set('Bevásárlás')
 
