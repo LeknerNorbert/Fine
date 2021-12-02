@@ -65,23 +65,25 @@ frame_right = ttk.Frame(window, padding = (10, 20, 20, 20))
 
 month_previous_b = ttk.Button(frame_right, text = '⯇')
 month_next_b = ttk.Button(frame_right, text = '⯈')
-current_month = ttk.Button(frame_right, text = 'November', style = 'secondary.TButton', width = 15)
+current_month_frame = ttk.Frame(frame_right, padding = (30, 5, 30, 5), style = 'secondary.TFrame')
+current_month_l = ttk.Label(current_month_frame, text = 'December', style = 'secondary.Inverse.TLabel')
 
 # Saving frame
 
 saving_frame = ttk.LabelFrame(frame_right, text = 'Megtakarítás', padding = (20, 20, 20, 20))
 
 so_far_label = ttk.Label(saving_frame, text = 'Eddig')
-so_far_entry = ttk.Entry(saving_frame, width = 15)
+so_far_entry = ttk.Entry(saving_frame, width = 15, state = 'disabled')
 so_far_progressbar = ttk.Progressbar(saving_frame, value = 75, length = 200)
 
 goal_label = ttk.Label(saving_frame, text = 'Cél') 
-goal_entry = ttk.Entry(saving_frame, width = 15)
+goal_entry = ttk.Entry(saving_frame, width = 15, state = 'disabled')
 goal_progressbar = ttk.Progressbar(saving_frame, value = 40, length = 200)
 
 # Adds options
 
 sp_options = [
+    'Kategória',
     'Számlák, rezsi',
     'Bevásárlás',
     'Ruházat',
@@ -90,7 +92,7 @@ sp_options = [
     'Szórakozás'
 ]
 sp_option = StringVar()
-sp_option.set(sp_options[0])
+sp_option.set('Bevásárlás')
 
 goal_add_e = ttk.Entry(frame_right, width = 15)
 goal_add_b = ttk.Button(frame_right, text = 'Új m. cél', style = 'secondary.TButton', width = 15)
@@ -108,7 +110,8 @@ frame_right.grid(column = 1, row = 0)
 
 month_previous_b.grid(column = 0, row = 0, pady = (0, 20))
 month_next_b.grid(column = 2, row = 0, pady = (0, 20))
-current_month.grid(column = 1, row = 0, pady = (0, 20))
+current_month_frame.grid(column = 1, row = 0, pady = (0, 20))
+current_month_l.grid(column = 0, row = 0)
 
 saving_frame.grid(column = 0, row = 1, columnspan = 3, pady = (0, 20))
 
