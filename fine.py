@@ -1,5 +1,5 @@
 from ttkbootstrap import Style
-from tkinter import Label, StringVar, Widget, ttk
+from tkinter import Frame, Label, StringVar, Widget, ttk
 
 style = Style(theme = 'journal')
 
@@ -24,14 +24,16 @@ label_spending = ttk.Label(frame_left, text = 'Költés')
 
 # Entrys
 
-entry_payment = ttk.Button(frame_left, text = '0Ft')
-entry_overhead = ttk.Entry(frame_left)
-entry_shopping = ttk.Entry(frame_left)
-entry_clothes = ttk.Entry(frame_left)
-entry_traffic = ttk.Entry(frame_left)
-entry_health = ttk.Entry(frame_left)
-entry_entertainment = ttk.Entry(frame_left)
-entry_spending = ttk.Button(frame_left, text = '0Ft')
+entry_payment_frame = ttk.Frame(frame_left, padding = (10, 5, 10, 5), style = 'primary.TFrame')
+entry_payment = ttk.Label(entry_payment_frame, text = '0Ft', style = 'primary.Inverse.TLabel') 
+entry_overhead = ttk.Entry(frame_left, state = 'disabled')
+entry_shopping = ttk.Entry(frame_left, state = 'disabled')
+entry_clothes = ttk.Entry(frame_left, state = 'disabled')
+entry_traffic = ttk.Entry(frame_left, state = 'disabled')
+entry_health = ttk.Entry(frame_left, state = 'disabled')
+entry_entertainment = ttk.Entry(frame_left, state = 'disabled')
+entry_spending_frame = ttk.Frame(frame_left, padding = (10, 5, 10, 5), style = 'primary.TFrame')
+entry_spending = ttk.Label(entry_spending_frame, text = '0Ft', style = 'primary.Inverse.TLabel') 
 
 # I am drawing all labels and entrys on the screen with grid system
 
@@ -46,14 +48,16 @@ label_health.grid(column = 0, row = 6, pady = (0, 10))
 label_entertainment.grid(column = 1, row = 6, pady = (0, 10))
 label_spending.grid(column = 0, row = 8, columnspan = 2, pady = (0, 10))
 
-entry_payment.grid(column = 0, row = 1, columnspan = 2, pady = (0, 20))
+entry_payment_frame.grid(column = 0, row = 1, columnspan = 2, pady = (0, 20))
+entry_payment.grid(column = 0, row = 0)
 entry_overhead.grid(column = 0, row = 3, pady = (0, 20), padx = (0, 5))
 entry_shopping.grid(column = 1, row = 3, pady = (0, 20), padx = (5, 0))
 entry_clothes.grid(column = 0, row = 5, pady = (0, 20), padx = (0, 5))
 entry_traffic.grid(column = 1, row = 5, pady = (0, 20), padx = (5, 0))
 entry_health.grid(column = 0, row = 7, pady = (0, 20), padx = (0, 5))
 entry_entertainment.grid(column = 1, row = 7, pady = (0, 20), padx = (5, 0))
-entry_spending.grid(column = 0, row = 9, columnspan = 2, pady = (0, 20))
+entry_spending_frame.grid(column = 0, row = 9, columnspan = 2, pady = (0, 20))
+entry_spending.grid(column = 0, row = 0)
 
 # Another side
 
