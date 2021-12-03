@@ -118,15 +118,15 @@ current_month_l = ttk.Label(current_month_frame, text = 'December', style = 'pri
 
 saving_frame = ttk.Frame(frame_right, style = 'secondary.TFrame', padding = (20, 20, 20, 20))
 
-so_far_label = ttk.Label(saving_frame, text = 'Eddig', style = 'secondary.Inverse.TLabel')
+so_far_label = ttk.Label(saving_frame, text = 'Eddig megtakarított', style = 'secondary.Inverse.TLabel')
 so_far_number_frame = ttk.Frame(saving_frame, padding = (5, 5, 5, 5), style = 'secondary.TFrame')
 so_far_number_label = ttk.Label(so_far_number_frame, width = 15, text = '0Ft', anchor = 'center', style = 'secondary.Inverse.TLabel')
-so_far_progressbar = ttk.Progressbar(saving_frame, value = 75, length = 200)
+so_far_progressbar = ttk.Progressbar(saving_frame, value = 75, length = 160)
 
-goal_label = ttk.Label(saving_frame, text = 'Cél', style = 'secondary.Inverse.TLabel') 
+goal_label = ttk.Label(saving_frame, text = 'Megtakarítási cél', style = 'secondary.Inverse.TLabel') 
 goal_number_frame = ttk.Frame(saving_frame, padding = (5, 5, 5, 5), style = 'secondary.TFrame')
 goal_number_label = ttk.Label(goal_number_frame, width = 15, text = '0Ft', anchor = 'center', style = 'secondary.Inverse.TLabel')
-goal_progressbar = ttk.Progressbar(saving_frame, value = 40, length = 200)
+goal_progressbar = ttk.Progressbar(saving_frame, value = 40, length = 160)
 
 # Adds options
 
