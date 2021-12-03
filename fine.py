@@ -2,7 +2,7 @@ from types import LambdaType
 from ttkbootstrap import Style
 from tkinter import Frame, Label, StringVar, Widget, ttk
 
-style = Style(theme = 'journal')
+style = Style(theme = 'cosmo')
 
 window = style.master
 window.iconbitmap('icon/icon.ico')
@@ -45,56 +45,56 @@ frame_left = ttk.Frame(window, padding = (20, 20, 10, 20))
 
 # Spending's labels
 
-label_payment = ttk.Label(frame_left, text = 'Jövedelem') 
 label_overhead = ttk.Label(frame_left, text = 'Számlák, rezsi')
 label_shopping = ttk.Label(frame_left, text = 'Bevásárlás')
 label_clothes = ttk.Label(frame_left, text = 'Ruházat')
 label_traffic = ttk.Label(frame_left, text = 'Közlekedés')
 label_health = ttk.Label(frame_left, text = 'Egészség')
 label_entertainment = ttk.Label(frame_left, text = 'Szórakozás')
+label_payment = ttk.Label(frame_left, text = 'Jövedelem') 
 label_spending = ttk.Label(frame_left, text = 'Költés')
 
 # Entrys
 
 l_payment_frame = ttk.Frame(frame_left, padding = (5, 5, 5, 5), style = 'primary.TFrame')
-l_overhead_frame = ttk.Frame(frame_left, padding = (5, 5, 5, 5), style = 'secondary.TFrame')
-l_shopping_frame = ttk.Frame(frame_left, padding = (5, 5, 5, 5), style = 'secondary.TFrame')
-l_clothes_frame = ttk.Frame(frame_left, padding = (5, 5, 5, 5), style = 'secondary.TFrame')
-l_traffic_frame = ttk.Frame(frame_left, padding = (5, 5, 5, 5), style = 'secondary.TFrame')
-l_health_frame = ttk.Frame(frame_left, padding = (5, 5, 5, 5), style = 'secondary.TFrame')
-l_entertainment_frame = ttk.Frame(frame_left, padding = (5, 5, 5, 5), style = 'secondary.TFrame')
+l_overhead_frame = ttk.Frame(frame_left, padding = (5, 5, 5, 5))
+l_shopping_frame = ttk.Frame(frame_left, padding = (5, 5, 5, 5))
+l_clothes_frame = ttk.Frame(frame_left, padding = (5, 5, 5, 5))
+l_traffic_frame = ttk.Frame(frame_left, padding = (5, 5, 5, 5))
+l_health_frame = ttk.Frame(frame_left, padding = (5, 5, 5, 5))
+l_entertainment_frame = ttk.Frame(frame_left, padding = (5, 5, 5, 5))
 l_spending_frame = ttk.Frame(frame_left, padding = (5, 5, 5, 5), style = 'primary.TFrame')
 
 l_payment = ttk.Label(l_payment_frame, text = '0Ft', style = 'primary.Inverse.TLabel', width = 15, anchor = 'center') 
-l_overhead = ttk.Label(l_overhead_frame, text = '0Ft', style = 'secondary.Inverse.TLabel', width = 15, anchor = 'center')
-l_shopping = ttk.Label(l_shopping_frame, text = '0Ft', style = 'secondary.Inverse.TLabel', width = 15, anchor = 'center')
-l_clothes = ttk.Label(l_clothes_frame, text = '0Ft', style = 'secondary.Inverse.TLabel', width = 15, anchor = 'center')
-l_traffic = ttk.Label(l_traffic_frame, text = '0Ft', style = 'secondary.Inverse.TLabel', width = 15, anchor = 'center')
-l_health = ttk.Label(l_health_frame, text = '0Ft', style = 'secondary.Inverse.TLabel', width = 15, anchor = 'center')
-l_entertainment = ttk.Label(l_entertainment_frame, text = '0Ft', style = 'secondary.Inverse.TLabel', width = 15, anchor = 'center')
+l_overhead = ttk.Label(l_overhead_frame, text = '0Ft', width = 15, anchor = 'center')
+l_shopping = ttk.Label(l_shopping_frame, text = '0Ft', width = 15, anchor = 'center')
+l_clothes = ttk.Label(l_clothes_frame, text = '0Ft', width = 15, anchor = 'center')
+l_traffic = ttk.Label(l_traffic_frame, text = '0Ft', width = 15, anchor = 'center')
+l_health = ttk.Label(l_health_frame, text = '0Ft', width = 15, anchor = 'center')
+l_entertainment = ttk.Label(l_entertainment_frame, text = '0Ft', width = 15, anchor = 'center')
 l_spending = ttk.Label(l_spending_frame, text = '0Ft', style = 'primary.Inverse.TLabel', width = 15, anchor = 'center') 
 
 # I am drawing all labels and entrys on the screen with grid system
 
 frame_left.grid(column = 0, row = 0)
 
-label_payment.grid(column = 0, row = 0, columnspan = 2, pady = (0, 10))
-label_overhead.grid(column = 0, row = 2, pady = (0, 10))
-label_shopping.grid(column = 1, row = 2, pady = (0, 10))
-label_clothes.grid(column = 0, row = 4, pady = (0, 10))
-label_traffic.grid(column = 1, row = 4, pady = (0, 10))
-label_health.grid(column = 0, row = 6, pady = (0, 10))
-label_entertainment.grid(column = 1, row = 6, pady = (0, 10))
-label_spending.grid(column = 0, row = 8, columnspan = 2, pady = (0, 10))
+label_overhead.grid(column = 0, row = 0, pady = (0, 10))
+label_shopping.grid(column = 1, row = 0, pady = (0, 10))
+label_clothes.grid(column = 0, row = 2, pady = (0, 10))
+label_traffic.grid(column = 1, row = 2, pady = (0, 10))
+label_health.grid(column = 0, row = 4, pady = (0, 10))
+label_entertainment.grid(column = 1, row = 4, pady = (0, 10))
+label_payment.grid(column = 0, row = 6, pady = (0, 10))
+label_spending.grid(column = 1, row = 6, pady = (0, 10))
 
-l_payment_frame.grid(column = 0, row = 1, columnspan = 2, pady = (0, 20))
-l_overhead_frame.grid(column = 0, row = 3, pady = (0, 20), padx = (0, 5))
-l_shopping_frame.grid(column = 1, row = 3, pady = (0, 20), padx = (5, 0))
-l_clothes_frame.grid(column = 0, row = 5, pady = (0, 20), padx = (0, 5))
-l_traffic_frame.grid(column = 1, row = 5, pady = (0, 20), padx = (5, 0))
-l_health_frame.grid(column = 0, row = 7, pady = (0, 20), padx = (0, 5))
-l_entertainment_frame.grid(column = 1, row = 7, pady = (0, 20), padx = (5, 0))
-l_spending_frame.grid(column = 0, row = 9, columnspan = 2, pady = (0, 20))
+l_overhead_frame.grid(column = 0, row = 1, pady = (0, 30), padx = (0, 10))
+l_shopping_frame.grid(column = 1, row = 1, pady = (0, 30), padx = (10, 0))
+l_clothes_frame.grid(column = 0, row = 3, pady = (0, 30), padx = (0, 10))
+l_traffic_frame.grid(column = 1, row = 3, pady = (0, 30), padx = (10, 0))
+l_health_frame.grid(column = 0, row = 5, pady = (0, 30), padx = (0, 10))
+l_entertainment_frame.grid(column = 1, row = 5, pady = (0, 30), padx = (10, 0))
+l_payment_frame.grid(column = 0, row = 7, pady = (0, 30), padx = (0, 10))
+l_spending_frame.grid(column = 1, row = 7, pady = (0, 30), padx = (10, 0))
 
 l_payment.grid(column = 0, row = 0)
 l_overhead.grid(column = 0, row = 0)
@@ -116,17 +116,17 @@ current_month_l = ttk.Label(current_month_frame, text = 'December', style = 'pri
 
 # Saving frame
 
-saving_frame = ttk.LabelFrame(frame_right, text = 'Megtakarítás', padding = (20, 20, 20, 20))
+saving_frame = ttk.Frame(frame_right, style = 'secondary.TFrame', padding = (20, 20, 20, 20))
 
-so_far_label = ttk.Label(saving_frame, text = 'Eddig')
-so_far_number_frame = ttk.Frame(saving_frame, padding = (5, 5, 5, 5), style ='secondary.TFrame')
-so_far_number_label = ttk.Label(so_far_number_frame, width = 15, text = '0Ft', style = 'secondary.Inverse.TLabel', anchor = 'center')
-so_far_progressbar = ttk.Progressbar(saving_frame, value = 75, length = 200, style = 'success.Horizontal.TProgressbar')
+so_far_label = ttk.Label(saving_frame, text = 'Eddig', style = 'secondary.Inverse.TLabel')
+so_far_number_frame = ttk.Frame(saving_frame, padding = (5, 5, 5, 5), style = 'secondary.TFrame')
+so_far_number_label = ttk.Label(so_far_number_frame, width = 15, text = '0Ft', anchor = 'center', style = 'secondary.Inverse.TLabel')
+so_far_progressbar = ttk.Progressbar(saving_frame, value = 75, length = 200)
 
-goal_label = ttk.Label(saving_frame, text = 'Cél') 
-goal_number_frame = ttk.Frame(saving_frame, padding = (5, 5, 5, 5), style ='secondary.TFrame')
-goal_number_label = ttk.Label(goal_number_frame, width = 15, text = '0Ft', style = 'secondary.Inverse.TLabel', anchor = 'center')
-goal_progressbar = ttk.Progressbar(saving_frame, value = 40, length = 200, style = 'warning.Horizontal.TProgressbar')
+goal_label = ttk.Label(saving_frame, text = 'Cél', style = 'secondary.Inverse.TLabel') 
+goal_number_frame = ttk.Frame(saving_frame, padding = (5, 5, 5, 5), style = 'secondary.TFrame')
+goal_number_label = ttk.Label(goal_number_frame, width = 15, text = '0Ft', anchor = 'center', style = 'secondary.Inverse.TLabel')
+goal_progressbar = ttk.Progressbar(saving_frame, value = 40, length = 200)
 
 # Adds options
 
