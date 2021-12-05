@@ -1,6 +1,7 @@
 from types import LambdaType
 from ttkbootstrap import Style
 from tkinter import Frame, Label, StringVar, Widget, ttk
+import ast
 
 style = Style(theme = 'cosmo')
 
@@ -31,13 +32,24 @@ actual_month = 'December'
 
 with open('user_saves.txt', 'r') as file:
     saves = file.read()
-    user_datas = saves
+    user_datas = ast.literal_eval(saves)
 
 def save():
     global user_datas
 
     with open('user_saves.txt', 'w') as file:
         file.write(repr(user_datas))
+
+def clicked_goal(goal):
+    global user_datas, actual_month, goal_number_label, goal_add_e
+
+    goal_add_e.delete(0, 'end')
+
+    user_datas[actual_month]['Cél'] = goal
+    goal_number_label = ttk.Label(goal_number_frame, width = 15, text = str(goal) + 'Ft', anchor = 'center', style = 'secondary.Inverse.TLabel')
+    goal_number_label.grid(column = 0, row = 0)
+
+    save()
 
 # I am creating a frame for 'spending'
 
@@ -125,7 +137,7 @@ so_far_progressbar = ttk.Progressbar(saving_frame, value = 75, length = 160)
 
 goal_label = ttk.Label(saving_frame, text = 'Megtakarítási cél', style = 'secondary.Inverse.TLabel') 
 goal_number_frame = ttk.Frame(saving_frame, padding = (5, 5, 5, 5), style = 'secondary.TFrame')
-goal_number_label = ttk.Label(goal_number_frame, width = 15, text = '0Ft', anchor = 'center', style = 'secondary.Inverse.TLabel')
+goal_number_label = ttk.Label(goal_number_frame, width = 15, text = str(user_datas[actual_month]['Cél']) + 'Ft', anchor = 'center', style = 'secondary.Inverse.TLabel')
 goal_progressbar = ttk.Progressbar(saving_frame, value = 40, length = 160)
 
 # Adds options
@@ -135,7 +147,7 @@ sp_option = StringVar()
 sp_option.set('Bevásárlás')
 
 goal_add_e = ttk.Entry(frame_right, width = 15)
-goal_add_b = ttk.Button(frame_right, text = 'Új m. cél', style = 'primary.Outline.TButton', width = 15)
+goal_add_b = ttk.Button(frame_right, text = 'Új m. cél', style = 'primary.Outline.TButton', width = 15, command = lambda:clicked_goal(goal_add_e.get()))
 
 payment_add_e = ttk.Entry(frame_right, width = 15)
 payment_add_b = ttk.Button(frame_right, text = '+ Jövedelem', style = 'primary.Outline.TButton', width = 15)
