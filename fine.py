@@ -26,18 +26,21 @@ user_datas = {
     'December':{'Jövedelem':0, 'Számlák, rezsi':0, 'Bevásárlás':0, 'Ruházat':0, 'Közlekedés':0, 'Egészség':0, 'Szórakozás':0, 'Eddig':0, 'Cél':0}
     }
 
-actual_month = 'December'
+actual_month = 'Január'
 
 # loading last saves and save function
 
-with open('user_saves.txt', 'r') as file:
+with open('user_saves.txt', 'r', encoding = 'utf-8') as file:
+    actual_month = file.readline().strip()
+    
     saves = file.read()
     user_datas = ast.literal_eval(saves)
 
 def save():
-    global user_datas
+    global user_datas, actual_month
 
-    with open('user_saves.txt', 'w') as file:
+    with open('user_saves.txt', 'w', encoding = 'utf-8') as file:
+        file.write(actual_month + '\n')
         file.write(repr(user_datas))
 
 def clicked_goal(goal):
@@ -45,11 +48,27 @@ def clicked_goal(goal):
 
     goal_add_e.delete(0, 'end')
 
-    user_datas[actual_month]['Cél'] = goal
-    goal_number_label = ttk.Label(goal_number_frame, width = 15, text = str(goal) + 'Ft', anchor = 'center', style = 'secondary.Inverse.TLabel')
-    goal_number_label.grid(column = 0, row = 0)
+    try:
+        user_datas[actual_month]['Cél'] = int(goal)
+        goal_number_label = ttk.Label(goal_number_frame, width = 15, text = str(user_datas[actual_month]['Cél']) + 'Ft', anchor = 'center', style = 'secondary.Inverse.TLabel')
+        goal_number_label.grid(column = 0, row = 0)
 
-    save()
+        save()
+    except:
+        print('A megadott értékek hibásak!')
+
+def clicked_payment(payment):
+    global user_datas, actual_month, l_payment
+
+    payment_add_e.delete(0, 'end')
+
+    try: 
+        user_datas[actual_month]['Jövedelem'] += int(payment)
+        
+        l_payment = ttk.Label(l_payment_frame, text = str(user_datas[actual_month]['Jövedelem']) + 'Ft', style = 'primary.Inverse.TLabel', width = 15, anchor = 'center')
+        l_payment.grid(column = 0, row = 0)
+    except:
+        print('A megadott értékek hibásak!')
 
 # I am creating a frame for 'spending'
 
@@ -77,13 +96,14 @@ l_health_frame = ttk.Frame(frame_left, padding = (5, 5, 5, 5))
 l_entertainment_frame = ttk.Frame(frame_left, padding = (5, 5, 5, 5))
 l_spending_frame = ttk.Frame(frame_left, padding = (5, 5, 5, 5), style = 'primary.TFrame')
 
-l_payment = ttk.Label(l_payment_frame, text = '0Ft', style = 'primary.Inverse.TLabel', width = 15, anchor = 'center') 
+ 
 l_overhead = ttk.Label(l_overhead_frame, text = '0Ft', width = 15, anchor = 'center')
 l_shopping = ttk.Label(l_shopping_frame, text = '0Ft', width = 15, anchor = 'center')
 l_clothes = ttk.Label(l_clothes_frame, text = '0Ft', width = 15, anchor = 'center')
 l_traffic = ttk.Label(l_traffic_frame, text = '0Ft', width = 15, anchor = 'center')
 l_health = ttk.Label(l_health_frame, text = '0Ft', width = 15, anchor = 'center')
 l_entertainment = ttk.Label(l_entertainment_frame, text = '0Ft', width = 15, anchor = 'center')
+l_payment = ttk.Label(l_payment_frame, text = '0Ft', style = 'primary.Inverse.TLabel', width = 15, anchor = 'center')
 l_spending = ttk.Label(l_spending_frame, text = '0Ft', style = 'primary.Inverse.TLabel', width = 15, anchor = 'center') 
 
 # I am drawing all labels and entrys on the screen with grid system
@@ -108,13 +128,13 @@ l_entertainment_frame.grid(column = 1, row = 5, pady = (0, 30), padx = (10, 0))
 l_payment_frame.grid(column = 0, row = 7, pady = (0, 30), padx = (0, 10))
 l_spending_frame.grid(column = 1, row = 7, pady = (0, 30), padx = (10, 0))
 
-l_payment.grid(column = 0, row = 0)
 l_overhead.grid(column = 0, row = 0)
 l_shopping.grid(column = 0, row = 0)
 l_clothes.grid(column = 0, row = 0)
 l_traffic.grid(column = 0, row = 0)
 l_health.grid(column = 0, row = 0)
 l_entertainment.grid(column = 0, row = 0)
+l_payment.grid(column = 0, row = 0)
 l_spending.grid(column = 0, row = 0)
 
 # Another side
@@ -150,7 +170,7 @@ goal_add_e = ttk.Entry(frame_right, width = 15)
 goal_add_b = ttk.Button(frame_right, text = 'Új m. cél', style = 'primary.Outline.TButton', width = 15, command = lambda:clicked_goal(goal_add_e.get()))
 
 payment_add_e = ttk.Entry(frame_right, width = 15)
-payment_add_b = ttk.Button(frame_right, text = '+ Jövedelem', style = 'primary.Outline.TButton', width = 15)
+payment_add_b = ttk.Button(frame_right, text = '+ Jövedelem', style = 'primary.Outline.TButton', width = 15, command = lambda: clicked_payment(payment_add_e.get()))
 
 spending_add_e = ttk.Entry(frame_right, width = 15)
 spending_add_mb = ttk.OptionMenu(frame_right, sp_option, *sp_options)
