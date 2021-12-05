@@ -1,3 +1,4 @@
+from os import extsep
 from types import LambdaType
 from ttkbootstrap import Style
 from tkinter import Frame, Label, StringVar, Widget, ttk
@@ -41,7 +42,7 @@ def total_spending():
 
 def next_month():
     # i am changing actual month and drawing all items on screen again
-    global user_datas, actual_month, months, current_month_l, so_far_number_label, goal_number_label
+    global user_datas, actual_month, months, current_month_l, so_far_number_label, goal_number_label, so_far_progressbar, goal_progressbar
     global l_overhead, l_shopping, l_clothes, l_traffic, l_health, l_entertainment, l_payment, l_spending
 
     if actual_month == 11:
@@ -59,8 +60,10 @@ def next_month():
     l_spending = ttk.Label(l_spending_frame, text = str(total_spending()) + 'Ft', style = 'primary.Inverse.TLabel', width = 15, anchor = 'center') 
 
     current_month_l = ttk.Label(current_month_frame, text = months[actual_month], style = 'primary.Inverse.TLabel', width = 20, anchor = 'center')
-    so_far_number_label = ttk.Label(so_far_number_frame, width = 15, text = '0Ft', anchor = 'center', style = 'secondary.Inverse.TLabel')
+    so_far_number_label = ttk.Label(so_far_number_frame, width = 15, text = str(user_datas[months[actual_month]]['Jövedelem'] - total_spending()) + 'Ft', anchor = 'center', style = 'secondary.Inverse.TLabel')
+    so_far_progressbar = ttk.Progressbar(saving_frame, value = s_progressbar_value(), length = 160, style = 'primary.Striped.Horizontal.TProgressbar')
     goal_number_label = ttk.Label(goal_number_frame, width = 15, text = str(user_datas[months[actual_month]]['Cél']) + 'Ft', anchor = 'center', style = 'secondary.Inverse.TLabel')
+    goal_progressbar = ttk.Progressbar(saving_frame, value = g_progressbar_value(), length = 160, style = 'primary.Striped.Horizontal.TProgressbar')
 
     l_overhead.grid(column = 0, row = 0)
     l_shopping.grid(column = 0, row = 0)
@@ -73,13 +76,15 @@ def next_month():
 
     current_month_l.grid(column = 0, row = 0)
     so_far_number_label.grid(column = 0, row = 0)
+    so_far_progressbar.grid(column = 2, row = 0, pady = (0, 10), padx = (5, 0))
     goal_number_label.grid(column = 0, row = 0)
+    goal_progressbar.grid(column = 2, row = 1, padx = (5, 0))
 
     save()
 
 def previous_month():
     # i am changing actual month and drawing all items on screen again
-    global user_datas, actual_month, months, current_month_l, so_far_number_label, goal_number_label
+    global user_datas, actual_month, months, current_month_l, so_far_number_label, goal_number_label, so_far_progressbar, goal_progressbar
     global l_overhead, l_shopping, l_clothes, l_traffic, l_health, l_entertainment, l_payment, l_spending
 
 
@@ -98,8 +103,10 @@ def previous_month():
     l_spending = ttk.Label(l_spending_frame, text = str(total_spending()) + 'Ft', style = 'primary.Inverse.TLabel', width = 15, anchor = 'center') 
 
     current_month_l = ttk.Label(current_month_frame, text = months[actual_month], style = 'primary.Inverse.TLabel', width = 20, anchor = 'center')
-    so_far_number_label = ttk.Label(so_far_number_frame, width = 15, text = '0Ft', anchor = 'center', style = 'secondary.Inverse.TLabel')
+    so_far_number_label = ttk.Label(so_far_number_frame, width = 15, text = str(user_datas[months[actual_month]]['Jövedelem'] - total_spending()) + 'Ft', anchor = 'center', style = 'secondary.Inverse.TLabel')
+    so_far_progressbar = ttk.Progressbar(saving_frame, value = s_progressbar_value(), length = 160, style = 'primary.Striped.Horizontal.TProgressbar')
     goal_number_label = ttk.Label(goal_number_frame, width = 15, text = str(user_datas[months[actual_month]]['Cél']) + 'Ft', anchor = 'center', style = 'secondary.Inverse.TLabel')
+    goal_progressbar = ttk.Progressbar(saving_frame, value = g_progressbar_value(), length = 160, style = 'primary.Striped.Horizontal.TProgressbar')
 
     l_overhead.grid(column = 0, row = 0)
     l_shopping.grid(column = 0, row = 0)
@@ -112,7 +119,9 @@ def previous_month():
 
     current_month_l.grid(column = 0, row = 0)
     so_far_number_label.grid(column = 0, row = 0)
+    so_far_progressbar.grid(column = 2, row = 0, pady = (0, 10), padx = (5, 0))
     goal_number_label.grid(column = 0, row = 0)
+    goal_progressbar.grid(column = 2, row = 1, padx = (5, 0))
 
     save()
 
@@ -132,21 +141,24 @@ with open('user_saves.txt', 'r', encoding = 'utf-8') as file:
     user_datas = ast.literal_eval(saves)
 
 def clicked_goal(goal):
-    global user_datas, actual_month, months, goal_number_label, goal_add_e
+    global user_datas, actual_month, months, goal_number_label, goal_add_e, goal_progressbar
 
     goal_add_e.delete(0, 'end')
 
     try:
         user_datas[months[actual_month]]['Cél'] = int(goal)
         goal_number_label = ttk.Label(goal_number_frame, width = 15, text = str(user_datas[months[actual_month]]['Cél']) + 'Ft', anchor = 'center', style = 'secondary.Inverse.TLabel')
+        goal_progressbar = ttk.Progressbar(saving_frame, value = g_progressbar_value(), length = 160, style = 'primary.Striped.Horizontal.TProgressbar')
+        
         goal_number_label.grid(column = 0, row = 0)
+        goal_progressbar.grid(column = 2, row = 1, padx = (5, 0))
 
         save()
     except:
         print('A megadott értékek hibásak!')
 
 def clicked_payment(payment):
-    global user_datas, actual_month, months, l_payment
+    global user_datas, actual_month, months, l_payment, so_far_number_label, so_far_progressbar, goal_progressbar
 
     payment_add_e.delete(0, 'end')
 
@@ -154,14 +166,21 @@ def clicked_payment(payment):
         user_datas[months[actual_month]]['Jövedelem'] += int(payment)
         
         l_payment = ttk.Label(l_payment_frame, text = str(user_datas[months[actual_month]]['Jövedelem']) + 'Ft', style = 'primary.Inverse.TLabel', width = 15, anchor = 'center')
+        so_far_number_label = ttk.Label(so_far_number_frame, width = 15, text = str(user_datas[months[actual_month]]['Jövedelem'] - total_spending()) + 'Ft', anchor = 'center', style = 'secondary.Inverse.TLabel')
+        so_far_progressbar = ttk.Progressbar(saving_frame, value = s_progressbar_value(), length = 160, style = 'primary.Striped.Horizontal.TProgressbar')
+        goal_progressbar = ttk.Progressbar(saving_frame, value = g_progressbar_value(), length = 160, style = 'primary.Striped.Horizontal.TProgressbar')
+
         l_payment.grid(column = 0, row = 0)
+        so_far_number_label.grid(column = 0, row = 0)
+        so_far_progressbar.grid(column = 2, row = 0, pady = (0, 10), padx = (5, 0))
+        goal_progressbar.grid(column = 2, row = 1, padx = (5, 0))
 
         save()
     except:
         print('A megadott értékek hibásak!')
 
 def clicked_spending(a, spending):
-    global user_datas, actual_month, months, spending_add_e, so_far_number_label
+    global user_datas, actual_month, months, spending_add_e, so_far_number_label, so_far_progressbar, goal_progressbar
     global l_overhead, l_shopping, l_clothes, l_traffic, l_health, l_entertainment, l_payment, l_spending
 
     try:
@@ -177,7 +196,9 @@ def clicked_spending(a, spending):
         l_entertainment = ttk.Label(l_entertainment_frame, text = str(user_datas[months[actual_month]]['Szórakozás']) + 'Ft', width = 15, anchor = 'center')
         l_payment = ttk.Label(l_payment_frame, text = str(user_datas[months[actual_month]]['Jövedelem']) + 'Ft', style = 'primary.Inverse.TLabel', width = 15, anchor = 'center')
         l_spending = ttk.Label(l_spending_frame, text = str(total_spending()) + 'Ft', style = 'primary.Inverse.TLabel', width = 15, anchor = 'center') 
-        so_far_number_label = ttk.Label(so_far_number_frame, width = 15, text = user_datas[months[actual_month]]['Jövedelem'] - total_spending(), anchor = 'center', style = 'secondary.Inverse.TLabel')
+        so_far_number_label = ttk.Label(so_far_number_frame, width = 15, text = str(user_datas[months[actual_month]]['Jövedelem'] - total_spending()) + 'Ft', anchor = 'center', style = 'secondary.Inverse.TLabel')
+        so_far_progressbar = ttk.Progressbar(saving_frame, value = s_progressbar_value(), length = 160, style = 'primary.Striped.Horizontal.TProgressbar')
+        goal_progressbar = ttk.Progressbar(saving_frame, value = g_progressbar_value(), length = 160, style = 'primary.Striped.Horizontal.TProgressbar')
 
         l_overhead.grid(column = 0, row = 0)
         l_shopping.grid(column = 0, row = 0)
@@ -188,11 +209,29 @@ def clicked_spending(a, spending):
         l_payment.grid(column = 0, row = 0)
         l_spending.grid(column = 0, row = 0)
         so_far_number_label.grid(column = 0, row = 0)
+        so_far_progressbar.grid(column = 2, row = 0, pady = (0, 10), padx = (5, 0))
+        goal_progressbar.grid(column = 2, row = 1, padx = (5, 0))
 
         save()
     except:
         spending_add_e.delete(0, 'end')
         print('A megadott értékek hibásak!')
+
+def s_progressbar_value():
+    global user_datas, actual_month, months
+
+    try:
+        return int((user_datas[months[actual_month]]['Jövedelem'] - total_spending()) / (user_datas[months[actual_month]]['Jövedelem'] / 100))
+    except ZeroDivisionError:
+        return 0
+    
+def g_progressbar_value():
+    global user_datas, actual_month, months
+
+    try:
+        return (user_datas[months[actual_month]]['Jövedelem'] - total_spending()) / (user_datas[months[actual_month]]['Cél'] / 100)
+    except ZeroDivisionError:
+        return 100
 
 # I am creating a frame for 'spending'
 
@@ -275,13 +314,13 @@ saving_frame = ttk.Frame(frame_right, style = 'secondary.TFrame', padding = (20,
 
 so_far_label = ttk.Label(saving_frame, text = 'Eddig megtakarított', style = 'secondary.Inverse.TLabel')
 so_far_number_frame = ttk.Frame(saving_frame, padding = (5, 5, 5, 5), style = 'secondary.TFrame')
-so_far_number_label = ttk.Label(so_far_number_frame, width = 15, text = user_datas[months[actual_month]]['Jövedelem'] - total_spending(), anchor = 'center', style = 'secondary.Inverse.TLabel')
-so_far_progressbar = ttk.Progressbar(saving_frame, value = 75, length = 160)
+so_far_number_label = ttk.Label(so_far_number_frame, width = 15, text = str(user_datas[months[actual_month]]['Jövedelem'] - total_spending()) + 'Ft', anchor = 'center', style = 'secondary.Inverse.TLabel')
+so_far_progressbar = ttk.Progressbar(saving_frame, value = s_progressbar_value(), length = 160, style = 'primary.Striped.Horizontal.TProgressbar')
 
 goal_label = ttk.Label(saving_frame, text = 'Megtakarítási cél', style = 'secondary.Inverse.TLabel') 
 goal_number_frame = ttk.Frame(saving_frame, padding = (5, 5, 5, 5), style = 'secondary.TFrame')
 goal_number_label = ttk.Label(goal_number_frame, width = 15, text = str(user_datas[months[actual_month]]['Cél']) + 'Ft', anchor = 'center', style = 'secondary.Inverse.TLabel')
-goal_progressbar = ttk.Progressbar(saving_frame, value = 40, length = 160)
+goal_progressbar = ttk.Progressbar(saving_frame, value = g_progressbar_value(), length = 160, style = 'primary.Striped.Horizontal.TProgressbar')
 
 # Adds options
 
