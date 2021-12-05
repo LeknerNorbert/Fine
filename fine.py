@@ -12,22 +12,32 @@ window.title('Fine')
 # user's datas in a dictionary
 
 user_datas = {
-    'Január':{'Jövedelem':0, 'Számlák, rezsi':0, 'Bevásárlás':0, 'Ruházat':0, 'Közlekedés':0, 'Egészség':0, 'Szórakozás':0, 'Eddig':0, 'Cél':0},
-    'Február':{'Jövedelem':0, 'Számlák, rezsi':0, 'Bevásárlás':0, 'Ruházat':0, 'Közlekedés':0, 'Egészség':0, 'Szórakozás':0, 'Eddig':0, 'Cél':0}, 
-    'Március':{'Jövedelem':0, 'Számlák, rezsi':0, 'Bevásárlás':0, 'Ruházat':0, 'Közlekedés':0, 'Egészség':0, 'Szórakozás':0, 'Eddig':0, 'Cél':0}, 
-    'Április':{'Jövedelem':0, 'Számlák, rezsi':0, 'Bevásárlás':0, 'Ruházat':0, 'Közlekedés':0, 'Egészség':0, 'Szórakozás':0, 'Eddig':0, 'Cél':0}, 
-    'Május':{'Jövedelem':0, 'Számlák, rezsi':0, 'Bevásárlás':0, 'Ruházat':0, 'Közlekedés':0, 'Egészség':0, 'Szórakozás':0, 'Eddig':0, 'Cél':0}, 
-    'Június':{'Jövedelem':0, 'Számlák, rezsi':0, 'Bevásárlás':0, 'Ruházat':0, 'Közlekedés':0, 'Egészség':0, 'Szórakozás':0, 'Eddig':0, 'Cél':0}, 
-    'Július':{'Jövedelem':0, 'Számlák, rezsi':0, 'Bevásárlás':0, 'Ruházat':0, 'Közlekedés':0, 'Egészség':0, 'Szórakozás':0, 'Eddig':0, 'Cél':0}, 
-    'Augusztus':{'Jövedelem':0, 'Számlák, rezsi':0, 'Bevásárlás':0, 'Ruházat':0, 'Közlekedés':0, 'Egészség':0, 'Szórakozás':0, 'Eddig':0, 'Cél':0},
-    'Szeptember':{'Jövedelem':0, 'Számlák, rezsi':0, 'Bevásárlás':0, 'Ruházat':0, 'Közlekedés':0, 'Egészség':0, 'Szórakozás':0, 'Eddig':0, 'Cél':0},
-    'Október':{'Jövedelem':0, 'Számlák, rezsi':0, 'Bevásárlás':0, 'Ruházat':0, 'Közlekedés':0, 'Egészség':0, 'Szórakozás':0, 'Eddig':0, 'Cél':0},
-    'November':{'Jövedelem':0, 'Számlák, rezsi':0, 'Bevásárlás':0, 'Ruházat':0, 'Közlekedés':0, 'Egészség':0, 'Szórakozás':0, 'Eddig':0, 'Cél':0},
-    'December':{'Jövedelem':0, 'Számlák, rezsi':0, 'Bevásárlás':0, 'Ruházat':0, 'Közlekedés':0, 'Egészség':0, 'Szórakozás':0, 'Eddig':0, 'Cél':0}
+    'Január':{'Jövedelem':0, 'Számlák, rezsi':0, 'Bevásárlás':0, 'Ruházat':0, 'Közlekedés':0, 'Egészség':0, 'Szórakozás':0, 'Cél':0},
+    'Február':{'Jövedelem':0, 'Számlák, rezsi':0, 'Bevásárlás':0, 'Ruházat':0, 'Közlekedés':0, 'Egészség':0, 'Szórakozás':0, 'Cél':0}, 
+    'Március':{'Jövedelem':0, 'Számlák, rezsi':0, 'Bevásárlás':0, 'Ruházat':0, 'Közlekedés':0, 'Egészség':0, 'Szórakozás':0, 'Cél':0}, 
+    'Április':{'Jövedelem':0, 'Számlák, rezsi':0, 'Bevásárlás':0, 'Ruházat':0, 'Közlekedés':0, 'Egészség':0, 'Szórakozás':0, 'Cél':0}, 
+    'Május':{'Jövedelem':0, 'Számlák, rezsi':0, 'Bevásárlás':0, 'Ruházat':0, 'Közlekedés':0, 'Egészség':0, 'Szórakozás':0, 'Cél':0}, 
+    'Június':{'Jövedelem':0, 'Számlák, rezsi':0, 'Bevásárlás':0, 'Ruházat':0, 'Közlekedés':0, 'Egészség':0, 'Szórakozás':0, 'Cél':0}, 
+    'Július':{'Jövedelem':0, 'Számlák, rezsi':0, 'Bevásárlás':0, 'Ruházat':0, 'Közlekedés':0, 'Egészség':0, 'Szórakozás':0, 'Cél':0}, 
+    'Augusztus':{'Jövedelem':0, 'Számlák, rezsi':0, 'Bevásárlás':0, 'Ruházat':0, 'Közlekedés':0, 'Egészség':0, 'Szórakozás':0, 'Cél':0},
+    'Szeptember':{'Jövedelem':0, 'Számlák, rezsi':0, 'Bevásárlás':0, 'Ruházat':0, 'Közlekedés':0, 'Egészség':0, 'Szórakozás':0, 'Cél':0},
+    'Október':{'Jövedelem':0, 'Számlák, rezsi':0, 'Bevásárlás':0, 'Ruházat':0, 'Közlekedés':0, 'Egészség':0, 'Szórakozás':0, 'Cél':0},
+    'November':{'Jövedelem':0, 'Számlák, rezsi':0, 'Bevásárlás':0, 'Ruházat':0, 'Közlekedés':0, 'Egészség':0, 'Szórakozás':0, 'Cél':0},
+    'December':{'Jövedelem':0, 'Számlák, rezsi':0, 'Bevásárlás':0, 'Ruházat':0, 'Közlekedés':0, 'Egészség':0, 'Szórakozás':0, 'Cél':0}
     }
 
 actual_month = 1
 months = ('Január', 'Február', 'Március', 'Április', 'Május', 'Június', 'Július', 'Augusztus', 'Szeptember', 'Október', 'November', 'December')
+
+def total_spending():
+    global user_datas, actual_month, months
+    total = 0
+
+    for key, value in user_datas[months[actual_month]].items():
+        if key != 'Jövedelem' and key != 'Eddig' and key != 'Cél':
+            total += value
+
+    return total
 
 def next_month():
     # i am changing actual month and drawing all items on screen again
@@ -46,7 +56,7 @@ def next_month():
     l_health = ttk.Label(l_health_frame, text = str(user_datas[months[actual_month]]['Egészség']) + 'Ft', width = 15, anchor = 'center')
     l_entertainment = ttk.Label(l_entertainment_frame, text = str(user_datas[months[actual_month]]['Szórakozás']) + 'Ft', width = 15, anchor = 'center')
     l_payment = ttk.Label(l_payment_frame, text = str(user_datas[months[actual_month]]['Jövedelem']) + 'Ft', style = 'primary.Inverse.TLabel', width = 15, anchor = 'center')
-    l_spending = ttk.Label(l_spending_frame, text = '0Ft', style = 'primary.Inverse.TLabel', width = 15, anchor = 'center') 
+    l_spending = ttk.Label(l_spending_frame, text = str(total_spending()) + 'Ft', style = 'primary.Inverse.TLabel', width = 15, anchor = 'center') 
 
     current_month_l = ttk.Label(current_month_frame, text = months[actual_month], style = 'primary.Inverse.TLabel', width = 20, anchor = 'center')
     so_far_number_label = ttk.Label(so_far_number_frame, width = 15, text = '0Ft', anchor = 'center', style = 'secondary.Inverse.TLabel')
@@ -85,7 +95,7 @@ def previous_month():
     l_health = ttk.Label(l_health_frame, text = str(user_datas[months[actual_month]]['Egészség']) + 'Ft', width = 15, anchor = 'center')
     l_entertainment = ttk.Label(l_entertainment_frame, text = str(user_datas[months[actual_month]]['Szórakozás']) + 'Ft', width = 15, anchor = 'center')
     l_payment = ttk.Label(l_payment_frame, text = str(user_datas[months[actual_month]]['Jövedelem']) + 'Ft', style = 'primary.Inverse.TLabel', width = 15, anchor = 'center')
-    l_spending = ttk.Label(l_spending_frame, text = '0Ft', style = 'primary.Inverse.TLabel', width = 15, anchor = 'center') 
+    l_spending = ttk.Label(l_spending_frame, text = str(total_spending()) + 'Ft', style = 'primary.Inverse.TLabel', width = 15, anchor = 'center') 
 
     current_month_l = ttk.Label(current_month_frame, text = months[actual_month], style = 'primary.Inverse.TLabel', width = 20, anchor = 'center')
     so_far_number_label = ttk.Label(so_far_number_frame, width = 15, text = '0Ft', anchor = 'center', style = 'secondary.Inverse.TLabel')
@@ -150,14 +160,14 @@ def clicked_payment(payment):
     except:
         print('A megadott értékek hibásak!')
 
-def clicked_spending(option, spending):
-    global user_datas, actual_month, months, spending_add_e
+def clicked_spending(a, spending):
+    global user_datas, actual_month, months, spending_add_e, so_far_number_label
     global l_overhead, l_shopping, l_clothes, l_traffic, l_health, l_entertainment, l_payment, l_spending
 
     try:
-        spending_add_e.delete(0, 'end')
+        user_datas[months[actual_month]][a] += int(spending)
 
-        user_datas[months[actual_month]][option] += int(spending)
+        spending_add_e.delete(0, 'end')
 
         l_overhead = ttk.Label(l_overhead_frame, text = str(user_datas[months[actual_month]]['Számlák, rezsi']) + 'Ft', width = 15, anchor = 'center')
         l_shopping = ttk.Label(l_shopping_frame, text = str(user_datas[months[actual_month]]['Bevásárlás']) + 'Ft', width = 15, anchor = 'center')
@@ -166,7 +176,8 @@ def clicked_spending(option, spending):
         l_health = ttk.Label(l_health_frame, text = str(user_datas[months[actual_month]]['Egészség']) + 'Ft', width = 15, anchor = 'center')
         l_entertainment = ttk.Label(l_entertainment_frame, text = str(user_datas[months[actual_month]]['Szórakozás']) + 'Ft', width = 15, anchor = 'center')
         l_payment = ttk.Label(l_payment_frame, text = str(user_datas[months[actual_month]]['Jövedelem']) + 'Ft', style = 'primary.Inverse.TLabel', width = 15, anchor = 'center')
-        l_spending = ttk.Label(l_spending_frame, text = '0Ft', style = 'primary.Inverse.TLabel', width = 15, anchor = 'center') 
+        l_spending = ttk.Label(l_spending_frame, text = str(total_spending()) + 'Ft', style = 'primary.Inverse.TLabel', width = 15, anchor = 'center') 
+        so_far_number_label = ttk.Label(so_far_number_frame, width = 15, text = user_datas[months[actual_month]]['Jövedelem'] - total_spending(), anchor = 'center', style = 'secondary.Inverse.TLabel')
 
         l_overhead.grid(column = 0, row = 0)
         l_shopping.grid(column = 0, row = 0)
@@ -176,6 +187,7 @@ def clicked_spending(option, spending):
         l_entertainment.grid(column = 0, row = 0)
         l_payment.grid(column = 0, row = 0)
         l_spending.grid(column = 0, row = 0)
+        so_far_number_label.grid(column = 0, row = 0)
 
         save()
     except:
@@ -215,7 +227,7 @@ l_traffic = ttk.Label(l_traffic_frame, text = str(user_datas[months[actual_month
 l_health = ttk.Label(l_health_frame, text = str(user_datas[months[actual_month]]['Egészség']) + 'Ft', width = 15, anchor = 'center')
 l_entertainment = ttk.Label(l_entertainment_frame, text = str(user_datas[months[actual_month]]['Szórakozás']) + 'Ft', width = 15, anchor = 'center')
 l_payment = ttk.Label(l_payment_frame, text = str(user_datas[months[actual_month]]['Jövedelem']) + 'Ft', style = 'primary.Inverse.TLabel', width = 15, anchor = 'center')
-l_spending = ttk.Label(l_spending_frame, text = '0Ft', style = 'primary.Inverse.TLabel', width = 15, anchor = 'center') 
+l_spending = ttk.Label(l_spending_frame, text = str(total_spending()) + 'Ft', style = 'primary.Inverse.TLabel', width = 15, anchor = 'center') 
 
 # I am drawing all labels and entrys on the screen with grid system
 
@@ -263,7 +275,7 @@ saving_frame = ttk.Frame(frame_right, style = 'secondary.TFrame', padding = (20,
 
 so_far_label = ttk.Label(saving_frame, text = 'Eddig megtakarított', style = 'secondary.Inverse.TLabel')
 so_far_number_frame = ttk.Frame(saving_frame, padding = (5, 5, 5, 5), style = 'secondary.TFrame')
-so_far_number_label = ttk.Label(so_far_number_frame, width = 15, text = '0Ft', anchor = 'center', style = 'secondary.Inverse.TLabel')
+so_far_number_label = ttk.Label(so_far_number_frame, width = 15, text = user_datas[months[actual_month]]['Jövedelem'] - total_spending(), anchor = 'center', style = 'secondary.Inverse.TLabel')
 so_far_progressbar = ttk.Progressbar(saving_frame, value = 75, length = 160)
 
 goal_label = ttk.Label(saving_frame, text = 'Megtakarítási cél', style = 'secondary.Inverse.TLabel') 
