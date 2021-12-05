@@ -9,6 +9,9 @@ window = style.master
 window.iconbitmap('icon/icon.ico')
 window.title('Fine')
 
+
+
+
 # user's datas in a dictionary
 
 user_datas = {
@@ -26,31 +29,113 @@ user_datas = {
     'December':{'Jövedelem':0, 'Számlák, rezsi':0, 'Bevásárlás':0, 'Ruházat':0, 'Közlekedés':0, 'Egészség':0, 'Szórakozás':0, 'Eddig':0, 'Cél':0}
     }
 
-actual_month = 'Január'
+
+
+
+actual_month = 1
+months = ('Január', 'Február', 'Március', 'Április', 'Május', 'Június', 'Július', 'Augusztus', 'Szeptember', 'Október', 'November', 'December')
+
+def next_month():
+    # i am changing actual month and drawing all items on screen again
+    global user_datas, actual_month, months, current_month_l, so_far_number_label, goal_number_label
+    global l_overhead, l_shopping, l_clothes, l_traffic, l_health, l_entertainment, l_payment, l_spending
+
+    if actual_month == 11:
+        actual_month = 0
+    else:
+        actual_month += 1
+
+    l_overhead = ttk.Label(l_overhead_frame, text = str(user_datas[months[actual_month]]['Számlák, rezsi']) + 'Ft', width = 15, anchor = 'center')
+    l_shopping = ttk.Label(l_shopping_frame, text = str(user_datas[months[actual_month]]['Bevásárlás']) + 'Ft', width = 15, anchor = 'center')
+    l_clothes = ttk.Label(l_clothes_frame, text = str(user_datas[months[actual_month]]['Ruházat']) + 'Ft', width = 15, anchor = 'center')
+    l_traffic = ttk.Label(l_traffic_frame, text = str(user_datas[months[actual_month]]['Közlekedés']) + 'Ft', width = 15, anchor = 'center')
+    l_health = ttk.Label(l_health_frame, text = str(user_datas[months[actual_month]]['Egészség']) + 'Ft', width = 15, anchor = 'center')
+    l_entertainment = ttk.Label(l_entertainment_frame, text = str(user_datas[months[actual_month]]['Szórakozás']) + 'Ft', width = 15, anchor = 'center')
+    l_payment = ttk.Label(l_payment_frame, text = str(user_datas[months[actual_month]]['Jövedelem']) + 'Ft', style = 'primary.Inverse.TLabel', width = 15, anchor = 'center')
+    l_spending = ttk.Label(l_spending_frame, text = '0Ft', style = 'primary.Inverse.TLabel', width = 15, anchor = 'center') 
+
+    current_month_l = ttk.Label(current_month_frame, text = months[actual_month], style = 'primary.Inverse.TLabel', width = 20, anchor = 'center')
+    so_far_number_label = ttk.Label(so_far_number_frame, width = 15, text = '0Ft', anchor = 'center', style = 'secondary.Inverse.TLabel')
+    goal_number_label = ttk.Label(goal_number_frame, width = 15, text = str(user_datas[months[actual_month]]['Cél']) + 'Ft', anchor = 'center', style = 'secondary.Inverse.TLabel')
+
+    l_overhead.grid(column = 0, row = 0)
+    l_shopping.grid(column = 0, row = 0)
+    l_clothes.grid(column = 0, row = 0)
+    l_traffic.grid(column = 0, row = 0)
+    l_health.grid(column = 0, row = 0)
+    l_entertainment.grid(column = 0, row = 0)
+    l_payment.grid(column = 0, row = 0)
+    l_spending.grid(column = 0, row = 0)
+
+    current_month_l.grid(column = 0, row = 0)
+    so_far_number_label.grid(column = 0, row = 0)
+    goal_number_label.grid(column = 0, row = 0)
+
+    save()
+
+
+def previous_month():
+    # i am changing actual month and drawing all items on screen again
+    global user_datas, actual_month, months, current_month_l, so_far_number_label, goal_number_label
+    global l_overhead, l_shopping, l_clothes, l_traffic, l_health, l_entertainment, l_payment, l_spending
+
+
+    if actual_month == 0:
+        actual_month = 11
+    else:
+        actual_month -= 1
+
+    l_overhead = ttk.Label(l_overhead_frame, text = str(user_datas[months[actual_month]]['Számlák, rezsi']) + 'Ft', width = 15, anchor = 'center')
+    l_shopping = ttk.Label(l_shopping_frame, text = str(user_datas[months[actual_month]]['Bevásárlás']) + 'Ft', width = 15, anchor = 'center')
+    l_clothes = ttk.Label(l_clothes_frame, text = str(user_datas[months[actual_month]]['Ruházat']) + 'Ft', width = 15, anchor = 'center')
+    l_traffic = ttk.Label(l_traffic_frame, text = str(user_datas[months[actual_month]]['Közlekedés']) + 'Ft', width = 15, anchor = 'center')
+    l_health = ttk.Label(l_health_frame, text = str(user_datas[months[actual_month]]['Egészség']) + 'Ft', width = 15, anchor = 'center')
+    l_entertainment = ttk.Label(l_entertainment_frame, text = str(user_datas[months[actual_month]]['Szórakozás']) + 'Ft', width = 15, anchor = 'center')
+    l_payment = ttk.Label(l_payment_frame, text = str(user_datas[months[actual_month]]['Jövedelem']) + 'Ft', style = 'primary.Inverse.TLabel', width = 15, anchor = 'center')
+    l_spending = ttk.Label(l_spending_frame, text = '0Ft', style = 'primary.Inverse.TLabel', width = 15, anchor = 'center') 
+
+    current_month_l = ttk.Label(current_month_frame, text = months[actual_month], style = 'primary.Inverse.TLabel', width = 20, anchor = 'center')
+    so_far_number_label = ttk.Label(so_far_number_frame, width = 15, text = '0Ft', anchor = 'center', style = 'secondary.Inverse.TLabel')
+    goal_number_label = ttk.Label(goal_number_frame, width = 15, text = str(user_datas[months[actual_month]]['Cél']) + 'Ft', anchor = 'center', style = 'secondary.Inverse.TLabel')
+
+    l_overhead.grid(column = 0, row = 0)
+    l_shopping.grid(column = 0, row = 0)
+    l_clothes.grid(column = 0, row = 0)
+    l_traffic.grid(column = 0, row = 0)
+    l_health.grid(column = 0, row = 0)
+    l_entertainment.grid(column = 0, row = 0)
+    l_payment.grid(column = 0, row = 0)
+    l_spending.grid(column = 0, row = 0)
+
+    current_month_l.grid(column = 0, row = 0)
+    so_far_number_label.grid(column = 0, row = 0)
+    goal_number_label.grid(column = 0, row = 0)
+
+    save()
 
 # loading last saves and save function
-
-with open('user_saves.txt', 'r', encoding = 'utf-8') as file:
-    actual_month = file.readline().strip()
-    
-    saves = file.read()
-    user_datas = ast.literal_eval(saves)
 
 def save():
     global user_datas, actual_month
 
     with open('user_saves.txt', 'w', encoding = 'utf-8') as file:
-        file.write(actual_month + '\n')
+        file.write(str(actual_month) + '\n')
         file.write(repr(user_datas))
 
+with open('user_saves.txt', 'r', encoding = 'utf-8') as file:
+    actual_month = int(file.readline().strip())
+    
+    saves = file.read()
+    user_datas = ast.literal_eval(saves)
+
 def clicked_goal(goal):
-    global user_datas, actual_month, goal_number_label, goal_add_e
+    global user_datas, actual_month, months, goal_number_label, goal_add_e
 
     goal_add_e.delete(0, 'end')
 
     try:
-        user_datas[actual_month]['Cél'] = int(goal)
-        goal_number_label = ttk.Label(goal_number_frame, width = 15, text = str(user_datas[actual_month]['Cél']) + 'Ft', anchor = 'center', style = 'secondary.Inverse.TLabel')
+        user_datas[months[actual_month]]['Cél'] = int(goal)
+        goal_number_label = ttk.Label(goal_number_frame, width = 15, text = str(user_datas[months[actual_month]]['Cél']) + 'Ft', anchor = 'center', style = 'secondary.Inverse.TLabel')
         goal_number_label.grid(column = 0, row = 0)
 
         save()
@@ -58,17 +143,22 @@ def clicked_goal(goal):
         print('A megadott értékek hibásak!')
 
 def clicked_payment(payment):
-    global user_datas, actual_month, l_payment
+    global user_datas, actual_month, months, l_payment
 
     payment_add_e.delete(0, 'end')
 
     try: 
-        user_datas[actual_month]['Jövedelem'] += int(payment)
+        user_datas[months[actual_month]]['Jövedelem'] += int(payment)
         
-        l_payment = ttk.Label(l_payment_frame, text = str(user_datas[actual_month]['Jövedelem']) + 'Ft', style = 'primary.Inverse.TLabel', width = 15, anchor = 'center')
+        l_payment = ttk.Label(l_payment_frame, text = str(user_datas[months[actual_month]]['Jövedelem']) + 'Ft', style = 'primary.Inverse.TLabel', width = 15, anchor = 'center')
         l_payment.grid(column = 0, row = 0)
+
+        save()
     except:
         print('A megadott értékek hibásak!')
+
+
+
 
 # I am creating a frame for 'spending'
 
@@ -103,8 +193,11 @@ l_clothes = ttk.Label(l_clothes_frame, text = '0Ft', width = 15, anchor = 'cente
 l_traffic = ttk.Label(l_traffic_frame, text = '0Ft', width = 15, anchor = 'center')
 l_health = ttk.Label(l_health_frame, text = '0Ft', width = 15, anchor = 'center')
 l_entertainment = ttk.Label(l_entertainment_frame, text = '0Ft', width = 15, anchor = 'center')
-l_payment = ttk.Label(l_payment_frame, text = '0Ft', style = 'primary.Inverse.TLabel', width = 15, anchor = 'center')
+l_payment = ttk.Label(l_payment_frame, text = str(user_datas[months[actual_month]]['Jövedelem']) + 'Ft', style = 'primary.Inverse.TLabel', width = 15, anchor = 'center')
 l_spending = ttk.Label(l_spending_frame, text = '0Ft', style = 'primary.Inverse.TLabel', width = 15, anchor = 'center') 
+
+
+
 
 # I am drawing all labels and entrys on the screen with grid system
 
@@ -137,14 +230,20 @@ l_entertainment.grid(column = 0, row = 0)
 l_payment.grid(column = 0, row = 0)
 l_spending.grid(column = 0, row = 0)
 
+
+
+
 # Another side
 
 frame_right = ttk.Frame(window, padding = (10, 20, 20, 20))
 
-month_previous_b = ttk.Button(frame_right, text = '⯇', style = 'primary.Outline.TButton',)
-month_next_b = ttk.Button(frame_right, text = '⯈', style = 'primary.Outline.TButton',)
+month_previous_b = ttk.Button(frame_right, text = '⯇', style = 'primary.Outline.TButton', command = previous_month)
+month_next_b = ttk.Button(frame_right, text = '⯈', style = 'primary.Outline.TButton', command = next_month)
 current_month_frame = ttk.Frame(frame_right, padding = (5, 5, 5, 5), style = 'primary.TFrame')
-current_month_l = ttk.Label(current_month_frame, text = 'December', style = 'primary.Inverse.TLabel', width = 20, anchor = 'center')
+current_month_l = ttk.Label(current_month_frame, text = months[actual_month], style = 'primary.Inverse.TLabel', width = 20, anchor = 'center')
+
+
+
 
 # Saving frame
 
@@ -157,8 +256,11 @@ so_far_progressbar = ttk.Progressbar(saving_frame, value = 75, length = 160)
 
 goal_label = ttk.Label(saving_frame, text = 'Megtakarítási cél', style = 'secondary.Inverse.TLabel') 
 goal_number_frame = ttk.Frame(saving_frame, padding = (5, 5, 5, 5), style = 'secondary.TFrame')
-goal_number_label = ttk.Label(goal_number_frame, width = 15, text = str(user_datas[actual_month]['Cél']) + 'Ft', anchor = 'center', style = 'secondary.Inverse.TLabel')
+goal_number_label = ttk.Label(goal_number_frame, width = 15, text = str(user_datas[months[actual_month]]['Cél']) + 'Ft', anchor = 'center', style = 'secondary.Inverse.TLabel')
 goal_progressbar = ttk.Progressbar(saving_frame, value = 40, length = 160)
+
+
+
 
 # Adds options
 
@@ -175,6 +277,9 @@ payment_add_b = ttk.Button(frame_right, text = '+ Jövedelem', style = 'primary.
 spending_add_e = ttk.Entry(frame_right, width = 15)
 spending_add_mb = ttk.OptionMenu(frame_right, sp_option, *sp_options)
 spending_add_b = ttk.Button(frame_right, text = '+ Költés', style = 'primary.Outline.TButton', width = 15)
+
+
+
 
 # Drawing all widgets on the screen
 
