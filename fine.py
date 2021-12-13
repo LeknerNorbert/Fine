@@ -9,6 +9,7 @@ style = Style(theme = 'cosmo')
 window = style.master
 window.iconbitmap('icon/icon.ico')
 window.title('Fine')
+window.resizable(False, False)
 
 # user's datas in a dictionary
 
